@@ -4,7 +4,7 @@
 Click [here](https://github.com/brookefzy/uvi-yolov5-deepsort) to download the fine-tuned model weights and instructions for this projects.
 
 ### 2. Pedestrian group detection
-Click [here](https://github.com/brookefzy/uvi-public-space)
+Click [here](https://github.com/brookefzy/uvi-public-space) for grouping behavior detection.
 
 ### 3. Replicate the analysis:
 * Analysis Environment
