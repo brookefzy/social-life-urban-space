@@ -1,4 +1,6 @@
-"""Plot Figure 5 BC: Pedestrian group encounters over time"""
+"""Plot Figure 5 BC: Pedestrian group encounters over time
+Table s5: Percentage of people in a spontaneous group over selected encounter time.
+"""
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -23,6 +25,7 @@ VALID_TRHEAD = Setup.VALID_TRHEAD
 STAY_VARIABLE = Setup.STAY_VARIABLE  # selected for the main analysis.
 locls = Setup.LOC_LS
 GRAPHIC_FOLDER = "./_graphics"
+TABLE_FOLDER = "./_tables"
 
 
 def get_full_frame(alldf_update):
@@ -262,9 +265,9 @@ def main():
         index="delta", columns="decades", values="pedestrian_count_emerging_group_per"
     )
     table_s4["2010s-1980s"] = table_s4["2010s"] - table_s4["1980s"]
-    table_s4.to_csv(f"{GRAPHIC_FOLDER}/c_table_s4.csv")
-    plot_by_site(longdf_loc)
     print("Save Fig 5b and 5c")
+    table_s4.to_csv(f"{TABLE_FOLDER}/c_table_s5.csv")
+    plot_by_site(longdf_loc)
 
 
 if __name__ == "__main__":
