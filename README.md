@@ -12,10 +12,10 @@ Click [here](https://github.com/brookefzy/uvi-public-space) for grouping behavio
 ```python=3.8, stataBE17```
 * create a folder `_data` and save the data here first.
 
-- 3.1 Figure 2: Lingering behavior and public space
-- 3.2 Figure 3: Speed analysis
-- 3.3 Figure 4: Group size analysis
-- 3.4 Figure 5: Pedestrian churn rate and encounter
+- Figure 2: Lingering behavior and public space
+- Figure 3: Speed analysis
+- Figure 4: Group size analysis
+- Figure 5: Pedestrian churn rate and encounter
 
 ### 4. Replicate the supplemental materials
 - Table S2: group size per frame summary

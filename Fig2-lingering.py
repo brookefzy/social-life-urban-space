@@ -24,6 +24,7 @@ colors = sns.color_palette("husl", 9)
 graphicfolder = "./_graphics"
 if not os.path.exists(graphicfolder):
     os.makedirs(graphicfolder)
+DATA_FOLDER = "./_data/curated"
 ##### Pre set up for the plot #################################################################
 color_dict = Setup.COLOR_DICT
 CURRENT_VIDEO = "v2"
@@ -235,7 +236,7 @@ def supple_robustness(robust_summary_video):
 
 
 def main():
-    alldf = pd.read_csv("./_data/c_alldf_update.csv")
+    alldf = pd.read_csv(Setup.MAIN_PATH)
     alldf = data_preprocessing(alldf)
     # hard code to only keep the conservative groups
     singles = alldf[alldf["is_group"] == False].reset_index(drop=True)
@@ -261,6 +262,36 @@ def main():
     plot_all_sites(
         robust_summary_singles, select_thred=SELECT_STYTHRED, file_suffix="singles"
     )
+
+    print("Now summarize the data for supplemental materials")
+
+    stay_summary = get_robust_staythred(alldf, SELECT_STYTHRED)
+    stay_summary["total"] = stay_summary[False] + stay_summary[True]
+
+    # get the percentage of singles staying
+    stay_summary_single = get_robust_staythred(singles, SELECT_STYTHRED)
+    print(SELECT_STYTHRED)
+    # get the percentage of groups staying
+    stay_summary_group = get_robust_staythred(
+        alldf[alldf["is_group"] == True], SELECT_STYTHRED
+    )
+
+    # merge summary
+    allsummary = stay_summary.merge(
+        stay_summary_single.drop([False, True], axis=1),
+        on=["decades", "video_location", "video_id", "frame_id"],
+        suffixes=["", "_single"],
+        how="left",
+    ).merge(
+        stay_summary_group.drop([False, True], axis=1),
+        on=["decades", "video_location", "video_id", "frame_id"],
+        suffixes=["", "_group"],
+        how="left",
+    )
+    allsummary.rename(
+        columns={True: "stay", False: "move", "total": "total_pedestrian"}, inplace=True
+    )
+    allsummary.to_csv(os.path.join(DATA_FOLDER, f"c_stay_summary.csv"), index=False)
 
 
 if __name__ == "__main__":

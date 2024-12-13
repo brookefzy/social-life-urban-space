@@ -2,7 +2,6 @@
 
 import numpy as np
 from matplotlib import pyplot as plt
-import os
 import pandas as pd
 import gc
 
@@ -250,7 +249,7 @@ def plot_by_site(longdf_loc):
 
 
 def main():
-    alldf = pd.read_csv("./_data/c_alldf_update.csv")
+    alldf = pd.read_csv(Setup.MAIN_PATH)
     interval_1980s = FPS_HISTORY / 10
     alldf["fps"] = np.where(alldf["decades"] == "2010s", 29.97, interval_1980s)
     gc.collect()

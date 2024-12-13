@@ -197,7 +197,7 @@ def speed_location_summary(data):
 
 
 def main():
-    alldf = pd.read_csv("./_data/c_alldf_update.csv")
+    alldf = pd.read_csv(Setup.MAIN_PATH)
     alldf = data_preprocessing(alldf)
     current_select = STAY_VARIABLE.format(staythred=SELECT_STYTHRED)
     df = (

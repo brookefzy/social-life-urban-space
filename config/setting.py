@@ -13,3 +13,4 @@ class Setup:
         "MET": "#a48cf4",
     }
     LOC_LS = ["Chestnut Street", "Bryant Park", "Downtown Crossing", "MET"]
+    MAIN_PATH = "./_data/c_alldf_update.csv"

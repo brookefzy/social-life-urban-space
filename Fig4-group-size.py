@@ -1,6 +1,5 @@
 """Plot Figure 4: Group Distribution"""
 
-import numpy as np
 from matplotlib import pyplot as plt
 import os
 import pandas as pd
@@ -27,6 +26,11 @@ plt.rcParams["figure.figsize"] = [3, 4]
 plt.rcParams["figure.autolayout"] = True
 plt.rcParams["svg.fonttype"] = "none"
 GRAPHIC_FOLDER = "./_graphics"
+# this is the folder where the curated data is stored for further analysis
+DATA_FOLDER = "./_data/curated"
+if not os.path.exists(DATA_FOLDER):
+    os.makedirs(DATA_FOLDER)
+    print("Folder created")
 
 
 groupmeta = {
@@ -92,6 +96,9 @@ def summary_groups(alldf_update):
             grouptimedf_loc[f"pedestrian_count{i}"]
             / grouptimedf_loc["pedestrian_count_total"]
         )
+    grouptimedf_loc.to_csv(
+        os.path.join(DATA_FOLDER, "c_group_size_distribution_by_loc.csv")
+    )
     grouptimedf_loc_summary = (
         grouptimedf_loc.groupby(["video_location", "decades"])
         .agg({"1_per": "mean", "2_per": "mean", "3_per": "mean", "4+_per": "mean"})
@@ -188,7 +195,7 @@ def plot_by_site(grouptimedf_loc_summary):
 
 
 def main():
-    alldf = pd.read_csv("./_data/c_alldf_update.csv")
+    alldf = pd.read_csv(Setup.MAIN_PATH)
     alldf["group_size"] = (
         alldf["group_size"].astype(str).apply(lambda x: x.replace(".0", "")).fillna("1")
     )
