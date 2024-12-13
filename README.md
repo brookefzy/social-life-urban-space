@@ -4,11 +4,13 @@
 Click [here](https://github.com/brookefzy/uvi-yolov5-deepsort) to download the fine-tuned model weights and instructions for this projects.
 
 ### 2. Pedestrian group detection
-Click [here](https://github.com/brookefzy/uvi-public-space) for grouping behavior detection.
+Click [here](https://github.com/brookefzy/uvi-public-space) for grouping behavior detection after pedestrian detection results.
+
 
 ### 3. Replicate the analysis:
 * Analysis Environment
 ```python=3.8, stataBE17```
+* create a folder `_data` and save the data here first.
 
 - 3.1 Figure 2: Lingering behavior and public space
 - 3.2 Figure 3: Speed analysis
@@ -23,4 +25,4 @@ Click [here](https://github.com/brookefzy/uvi-public-space) for grouping behavio
 
 
 ## Data
-Download the data from here.
+Download the data from [here](https://www.dropbox.com/scl/fi/1b5r496n0rnuxqggktf3r/c_alldf_update.csv?rlkey=2yckyet68m6w7se8n2nj5ux3r&dl=0).
