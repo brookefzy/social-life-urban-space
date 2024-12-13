@@ -1,2 +1,3 @@
 *.csv
 _data/*
+*.pyc
