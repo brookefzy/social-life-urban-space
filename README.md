@@ -1,4 +1,5 @@
-# social-life-urban-space
+# The social life of urban public space
+This repo allow researchers to repeat the analysis from the paper (Shifting Patterns of Social Interaction: Exploring the Social Life of Urban Spaces Through AI)[https://www.nber.org/system/files/working_papers/w33185/w33185.pdf].
 ## Content
 ### 1.Pedetrian tracking from video
 Click [here](https://github.com/brookefzy/uvi-yolov5-deepsort) to download the fine-tuned model weights and instructions for this projects.
