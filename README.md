@@ -19,3 +19,13 @@ Run the *.py files to repeat the analysis and reproduce the figures.
 
 ## Data
 Data to reproduce the analysis is available upon requests from the researcher
+
+## Citation
+```
+@techreport{salazar2024shifting,
+  title={Shifting Patterns of Social Interaction: Exploring the Social Life of Urban Spaces Through AI},
+  author={Salazar-Miranda, Arianna and Fan, Zhuangyuan and Baick, Michael B and Hampton, Keith N and Duarte, Fabio and Loo, Becky PY and Glaeser, Edward L and Ratti, Carlo},
+  year={2024},
+  institution={National Bureau of Economic Research}
+}
+```
