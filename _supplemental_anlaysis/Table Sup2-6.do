@@ -8,7 +8,7 @@ set more off
 clear all
 * Set directory to location of data
 
-global setting "D:/Dropbox (Personal)/Personal Work/_Projects_GIT/social-life-urban-space"
+global setting "/Users/yuan/MIT Dropbox/Zhuangyuan Fan/whyte_CV/_script/social-life-urban-space"
 global datasource "${setting}/_data/curated"
 cd "${datasource}"
 global graphic "${setting}/_graphics"
@@ -52,9 +52,9 @@ title(Summary Statistics on Group Sizes Per Frame\label{summary2y})
 ***********************************************************************************
 ** TABLE S6
 ***********************************************************************************
-import delimited using "${project}/c_stay_summary.csv"
+import delimited using "${datasource}/c_stay_summary.csv"
 global comp total_pedestrian stay stay_per100 single_stayper100  group_stayper100 
-
+browse
 gen stay_per100 = stay_per*100
 gen single_stayper100 = stay_per_single*100
 gen group_stayper100 = stay_per_group*100
@@ -69,7 +69,7 @@ label var stay_per100 "$\%$ Ped. Staying"
 
 ***********************************************************************************
 * Summarize the data by location by decades
-tabulate video_location
+tabulate video_location decades, summarize(total_pedestrian)
 // summarize(minute_from_start)
 eststo clear
 
