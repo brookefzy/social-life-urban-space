@@ -7,7 +7,7 @@ import argparse
 
 DATAFOLDER = "../_data/viz_sample"
 VIDEO_PATH = {
-    "1980": "../_data/viz_sample/B10_G2_Env5_0001-Scene-006_W2xEX_VFI_mp4",
+    "1980": "../_data/viz_sample/B10_G2_Env5_0001-Scene-006_W2xEX_VFI_mp4.mp4",
     "2010": "../_data/viz_sample/20100612-120118b02_20_50.mp4",
 }
 VIDEO_VIZ_FOLDER = "../_data/curated/video_viz/"
