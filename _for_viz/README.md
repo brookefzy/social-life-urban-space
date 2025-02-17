@@ -12,3 +12,5 @@ Save the data to:
 cd ./social-life-urban-space/_for_viz
 python viz.py -y 2010  -s 5
 ```
+# Note
+The effective boundary needs to be considered.
