@@ -3,10 +3,11 @@ import cv2
 import os
 import pandas as pd
 import random
+import argparse
 
 DATAFOLDER = "../_data/viz_sample"
 VIDEO_PATH = {
-    "1980": "../_data/viz_sample/Scenes_r_selected/B10_G2_Env5_0001-Scene-006.mp4",
+    "1980": "../_data/viz_sample/B10_G2_Env5_0001-Scene-006_W2xEX_VFI_mp4",
     "2010": "../_data/viz_sample/20100612-120118b02_20_50.mp4",
 }
 VIDEO_VIZ_FOLDER = "../_data/curated/video_viz/"
@@ -125,9 +126,30 @@ def viz_video(
 
 
 def main():
-    for videoname in ["20100612-120118b02_20_50"]:
-        """we only use this for sample for now"""
-        viz_video(videoname)
+    # for videoname in ["20100612-120118b02_20_50"]:
+    #     """we only use this for sample for now"""
+    #     viz_video(videoname)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--year", "-y", type=str, help="year, choose from 1980, 2010", default="2010"
+    )
+    parser.add_argument(
+        "--total_secs", "-s", type=int, help="total seconds to visualize", default=10
+    )
+    args = parser.parse_args()
+    year = str(args.year)
+    video_path = VIDEO_PATH[year]
+    video_name = video_path.split("/")[-1].split(".")[0]
+    print(
+        "Now visualize ",
+        video_name,
+        " from ",
+        video_path,
+        "\n for ",
+        args.total_secs,
+        " seconds",
+    )
+    viz_video(video_name, video_path=video_path, viz_end=int(args.total_secs))
 
 
 if __name__ == "__main__":
