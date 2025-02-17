@@ -67,9 +67,7 @@ def viz_video(
     # out.release()
     out = cv2.VideoWriter(outputfile, fourcc, fps, size)
     video.set(cv2.CAP_PROP_POS_FRAMES, frame_start)
-    traceGDF_people = pd.read_csv(
-        os.path.join(DATAFOLDER, "20100612-120118b02_20_50_viz.csv")
-    )
+    traceGDF_people = pd.read_csv(os.path.join(DATAFOLDER, f"{videoname}_viz.csv"))
 
     def get_xy(temp2):
         temp2["x1"] = temp2["x"] - temp2["w"] / 2
@@ -136,10 +134,21 @@ def main():
     parser.add_argument(
         "--total_secs", "-s", type=int, help="total seconds to visualize", default=10
     )
+    parser.add_argument(
+        "--output_folder",
+        "-o",
+        type=str,
+        help="output folder for the visualization video",
+        default=VIDEO_VIZ_FOLDER,
+    )
+
     args = parser.parse_args()
     year = str(args.year)
     video_path = VIDEO_PATH[year]
     video_name = video_path.split("/")[-1].split(".")[0]
+    output_folder = args.output_folder
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
     print(
         "Now visualize ",
         video_name,
@@ -149,7 +158,12 @@ def main():
         args.total_secs,
         " seconds",
     )
-    viz_video(video_name, video_path=video_path, viz_end=int(args.total_secs))
+    viz_video(
+        video_name,
+        video_path=video_path,
+        viz_end=int(args.total_secs),
+        video_viz_folder=output_folder,
+    )
 
 
 if __name__ == "__main__":
