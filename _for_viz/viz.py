@@ -124,9 +124,6 @@ def viz_video(
 
 
 def main():
-    # for videoname in ["20100612-120118b02_20_50"]:
-    #     """we only use this for sample for now"""
-    #     viz_video(videoname)
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--year", "-y", type=str, help="year, choose from 1980, 2010", default="2010"
