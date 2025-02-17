@@ -10,5 +10,5 @@ Save the data to:
 # Visualize the groups
 ```
 cd ./social-life-urban-space/_for_viz
-python viz.py
+python viz.py -y 2010  -s 5
 ```
