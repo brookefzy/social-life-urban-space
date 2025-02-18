@@ -12,5 +12,8 @@ Save the data to:
 cd ./social-life-urban-space/_for_viz
 python viz.py -y 2010  -s 5
 ```
+# Sample viz here:
+`https://www.dropbox.com/scl/fi/ra8c4uwvnsll6zvrthq6j/20100612-120118b02_20_50_0_50_n-2.mp4?rlkey=rj8tmaqtd734qcq1r5zvti4ln&dl=0`
+
 # Note
 The effective boundary needs to be considered.
