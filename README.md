@@ -18,7 +18,7 @@ Run the *.py files to repeat the analysis and reproduce the figures.
 - Figure 5: Pedestrian churn rate and encounter
 
 ## 4. Data
-Data to reproduce the analysis is available upon requests from the researcher
+Data to reproduce the analysis is available upon requests from the researcher [LINK with password](https://www.dropbox.com/scl/fi/pqt9awsj4otws3mwrwr2g/c_alldf_update.csv?rlkey=3sxzcsz8ek3tq1zebdbnd44b8&st=5v2g9heb&dl=0)
 
 ## 5. Create visualization example
 
