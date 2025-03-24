@@ -5,12 +5,48 @@ import pandas as pd
 import random
 import argparse
 
-DATAFOLDER = "../_data/viz_sample"
-VIDEO_PATH = {
-    "1980": "../_data/viz_sample/B10_G2_Env5_0001-Scene-006_W2xEX_VFI_mp4.mp4",
-    "2010": "../_data/viz_sample/20100612-120118b02_20_50.mp4",
-}
+DATAFOLDER = "../_data/viz_sample" # replace here with your DATAFOLDER
+VIDEO_FOLDER = "../_data/raw/sample_video" # replace here with your VIDEO_FOLDER
+
 VIDEO_VIZ_FOLDER = "../_data/curated/video_viz/"
+VIZ_FILE_DICT = {
+    "bryant_park": {
+        "1980": f"{DATAFOLDER}/B16_G8_Env5_0001-Scene-005_W2xEX_VFI_mp4_0_60_viz.csv",
+        "2010": f"{DATAFOLDER}/20081008-141944b03_120_180_viz.csv",
+    },
+    "chestnut_street":{
+        "1980": f"{DATAFOLDER}/B18_G1_Env15_0001-Scene-007_W2xEX_VFI_mp4_0_60_viz.csv",
+        "2010": f"{DATAFOLDER}/20100519-083343b07_10_70_viz.csv",
+    },
+    "met":{
+        "1980": f"{DATAFOLDER}/B10_G2_Env5_0001-Scene-006_W2xEX_VFI_mp4_viz.csv",
+        "2010": f"{DATAFOLDER}/20100612-120118b02_10_70_viz.csv",
+    },
+    "downtown_crossing":{
+        "1980": f"{DATAFOLDER}/B11_G1_Env3_0001-Scene-001_W2xEX_VFI_mp4_0_60_viz.csv",
+        "2010": f"{DATAFOLDER}/20100521-115755b02_10_70_viz.csv",
+    }
+}
+
+SUFFIX_1980 = "_W2xEX_VFI_mp4_0_60.mp4"
+VIDEO_FILE_DICT = {
+    "met":{
+    "1980":f"{VIDEO_FOLDER}/B10_G2_Env5_0001-Scene-006{SUFFIX_1980}",
+    "2010":f"{VIDEO_FOLDER}/20100612-120118b02_10_70.mp4"
+    },
+    "bryant_park":{
+    "1980":f"{VIDEO_FOLDER}/B16_G8_Env5_0001-Scene-005{SUFFIX_1980}",
+    "2010":f"{VIDEO_FOLDER}/20081008-141944b03_120_180.mp4"
+    },
+    "downtown_crossing":{
+    "1980":f"{VIDEO_FOLDER}/B11_G1_Env3_0001-Scene-001{SUFFIX_1980}",
+    "2010":f"{VIDEO_FOLDER}/20100521-115755b02_10_70.mp4"
+    },
+    "chestnut_street":{
+    "1980":f"{VIDEO_FOLDER}/B18_G1_Env15_0001-Scene-007{SUFFIX_1980}",
+    "2010":f"{VIDEO_FOLDER}/20100519-083343b07_10_70.mp4"
+    }
+}
 
 
 def getbasics(file_path):
@@ -48,13 +84,14 @@ def viz_group(trait_ingroup, frame, group_colors):
 
 
 def viz_video(
-    videoname: str,
+    location:str,
+    year:str,
     viz_start=0,
-    viz_end=30,
-    video_path=VIDEO_PATH["2010"],
+    viz_end=60,
     video_viz_folder=VIDEO_VIZ_FOLDER,
 ):
-
+    video_path = VIDEO_FILE_DICT[location][year]
+    videoname = video_path.split("/")[-1].split(".")[0]
     print(videoname)
     video, fps, size = getbasics(video_path)
     frame_start = int(viz_start * fps)
@@ -67,7 +104,9 @@ def viz_video(
     # out.release()
     out = cv2.VideoWriter(outputfile, fourcc, fps, size)
     video.set(cv2.CAP_PROP_POS_FRAMES, frame_start)
-    traceGDF_people = pd.read_csv(os.path.join(DATAFOLDER, f"{videoname}_viz.csv"))
+    viz_file_path = VIZ_FILE_DICT[location][year]
+    # read the traceGDF file
+    traceGDF_people = pd.read_csv(viz_file_path)
 
     def get_xy(temp2):
         temp2["x1"] = temp2["x"] - temp2["w"] / 2
@@ -129,6 +168,10 @@ def main():
         "--year", "-y", type=str, help="year, choose from 1980, 2010", default="2010"
     )
     parser.add_argument(
+        "--location", "-l", type=str, help="location, choose from met, bryant_park, downtown_crossing, chestnut_street", 
+        default="met"
+    )
+    parser.add_argument(
         "--total_secs", "-s", type=int, help="total seconds to visualize", default=10
     )
     parser.add_argument(
@@ -141,7 +184,8 @@ def main():
 
     args = parser.parse_args()
     year = str(args.year)
-    video_path = VIDEO_PATH[year]
+    location = str(args.location)
+    video_path = VIDEO_FILE_DICT[location][year]
     video_name = video_path.split("/")[-1].split(".")[0]
     output_folder = args.output_folder
     if not os.path.exists(output_folder):
@@ -156,8 +200,8 @@ def main():
         " seconds",
     )
     viz_video(
-        video_name,
-        video_path=video_path,
+        location=location,
+        year=year,
         viz_end=int(args.total_secs),
         video_viz_folder=output_folder,
     )
