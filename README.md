@@ -24,9 +24,10 @@ Data to reproduce the analysis is available upon requests from the researcher [L
 
 ## Citation
 ```
-@software{fan2025shifting,
+@software{fan2024shifting,
   title={Software for the paper: Shifting Patterns of Social Interaction: Exploring the Social Life of Urban Spaces Through AI},
   author={Fan, Zhuangyuan},
+url={https://github.com/brookefzy/social-life-urban-space},
   year={2024}
 }
 ```
