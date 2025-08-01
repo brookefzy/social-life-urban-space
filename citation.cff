@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Use this citation when using this code"
+authors:
+  - given-names: "Zhuanyuan"
+    family-names: "Fan"
+    affiliation: "University of Hong Kong"
+title: "Code for replicating paper: Exploring the social life of urban spaces through AI"
+repository-code: "https://github.com/brookefzy/social-life-urban-space"
+license: MIT
